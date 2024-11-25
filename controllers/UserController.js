@@ -4,15 +4,16 @@ const jwt = require('jsonwebtoken');
 const { jwt_secret } = require('../config/config.json')['development']
 const {Op}= Sequelize
 const UserController = {
-  async create(req, res) {
+  async create(req, res,next) {
     try {
       // console.log(req.body)
       req.body.password = await bcrypt.hash(req.body.password, 10);
       const user = await User.create(req.body);
       res.status(201).send({ message: "Usuario creado", user });
     } catch (error) {
-      console.error(error);
-      res.status(500).send({ message: "There was a problem", error });
+      // console.error(error);
+      // res.status(500).send({ message: "There was a problem", error });
+      next(error)
     }
   },
   async getAll(req, res) {
