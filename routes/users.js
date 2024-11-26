@@ -4,7 +4,7 @@ const { authentication, isAdmin } = require("../middleware/authentication")
 const router = express.Router()
 
 router.post("/create",UserController.create)
-router.get("/getAll",UserController.getAll)
+router.get("/getAll",authentication,UserController.getAll)
 router.delete("/id/:id",authentication,isAdmin, UserController.delete)
 router.put("/id/:id",authentication, UserController.update)
 router.post("/login",UserController.login)

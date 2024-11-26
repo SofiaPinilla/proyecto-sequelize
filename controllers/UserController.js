@@ -59,6 +59,8 @@ const UserController = {
         },
       });
       res.send({ message: "User successfully updated" });
+      // res.body.message
+      // res.send("User successfully updated");//res.text
     } catch (error) {
       console.error(error);
       res.status(500).send({ message: "There was a problem", error });
